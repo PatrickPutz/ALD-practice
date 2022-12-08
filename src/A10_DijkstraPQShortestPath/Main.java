@@ -1,10 +1,17 @@
 package A10_DijkstraPQShortestPath;
+import java.util.HashMap;
 import java.util.List;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
+
+		/*
+			- Je Knoten soll das Land festgelegt werden
+			- Grenzübertritt soll zusätzliche Wegkosten von 2 hinzugefügt
+
+		 */
+
 		Graph g = new ListGraph(8, false);
 		g.addEdge(0, 4,  3);
 		g.addEdge(0, 5,  4);
@@ -18,7 +25,18 @@ public class Main {
 		g.addEdge(3, 7,  1);
 		g.addEdge(5, 6,  3);
 
-		DijkstraPQShortestPath dfs = new DijkstraPQShortestPath(g);
+		HashMap<Integer, String> vertexCountry = new HashMap<>();
+		vertexCountry.put(0, "AT");
+		vertexCountry.put(1, "AT");
+		vertexCountry.put(2, "AT");
+		vertexCountry.put(3, "AT");
+		vertexCountry.put(4, "AT");
+		vertexCountry.put(5, "DE");
+		vertexCountry.put(6, "AT");
+		vertexCountry.put(7, "AT");
+
+
+		DijkstraPQShortestPath dfs = new DijkstraPQShortestPath(g, vertexCountry);
 		List<Integer> way = dfs.findWay(0, 7);
 		printWay(way);
 
